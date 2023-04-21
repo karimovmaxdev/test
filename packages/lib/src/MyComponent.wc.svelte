@@ -116,6 +116,16 @@
 
   let body
 
+  // fix for index.html version
+  let body2 = document.querySelector('body')
+  body2.addEventListener('click', (e) => {
+    console.log('click')
+    if(e.currentTarget === e.target) {
+      showCalendar = false;
+      showList = false;
+  } 
+  })
+
 
 
 </script>

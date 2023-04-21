@@ -22,7 +22,7 @@
 
 
 
-  // $: if(customElement) customElement.cities = cities;
+  $: if(customElement) customElement.cities = cities;
   $: if(customElement) customElement.addEventListener('submit', () => console.log('custom submit callback'));
   
 </script>
@@ -33,12 +33,11 @@
   <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p> -->
 
   <p class="container" >
-    <!-- <my-component bind:this={customElement}/> -->
+    <my-component bind:this={customElement}/>
   </p>
 </main>
 
 <style>
-
   /* main {
     text-align: center;
     padding: 1em;
