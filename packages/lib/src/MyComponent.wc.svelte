@@ -56,6 +56,8 @@
   let focusedInput = '';
   let showList = true;
   let showCalendar = false;
+  
+  let wrapperEl;
 
   let callSubmit = () => {
     console.log('static callback')
@@ -114,36 +116,36 @@
     cities = cities.split(',')
   }
 
-  let body
 
   // fix for index.html version
-  let body2 = document.querySelector('body')
-  body2.addEventListener('click', (e) => {
-    console.log('click')
-    if(e.currentTarget === e.target) {
-      showCalendar = false;
-      showList = false;
-  } 
-  })
-
+  // let body = document.querySelector('body')
+  // body.addEventListener('click', (e) => {
+  //   console.log('click')
+  //   if(e.currentTarget === e.target) {
+  //     showCalendar = false;
+  //     showList = false;
+  // } 
+  // })
 
 
 </script>
 
 <svelte:window on:submit={callSubmit}/>
-<svelte:body bind:this={body} on:click={(e) => {
+<svelte:body on:click={(e) => {
     if(e.currentTarget === e.target) {
     showCalendar = false;
     showList = false;
   } 
 }}/>
 
-<div on:click={(e) => {
-  const name = e.target.getAttribute("class")
-  if(name === 'wrapper') {
+<div 
+  bind:this={wrapperEl}
+  on:click={(e) => {
+  if(e.target === wrapperEl) {
     showCalendar = false;
     showList = false;
   }
+
 
 }} class="wrapper">
   <!-- <Icon name={"./svelte.svg"}/> -->
@@ -263,13 +265,21 @@
   }
 
   .startData {
+    position: relative;
     pointer-events: all;
     cursor: pointer;
+    padding-left: 24px;
   }
 
-  .endData {
-    pointer-events: all;
-    cursor: pointer;
+  .startData:before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    left: 0;
+    background-image: url('./public/calendar.svg');
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
   .wrapper {
@@ -381,8 +391,7 @@
   }
 
   .listItem:hover {
-    background-color: #0d99ff;
-    color: white;
+    background-color: #E0E0E0;
     transition: background-color .3s;
   }
   .rect {
@@ -424,7 +433,7 @@
     height: 43px;
     border-radius: 5px;
     margin-top: 5px;
-    padding: 0 44px;
+    padding: 0 64px;
     background-color: #E0E0E0;
     font-family: 'Roboto';
     font-style: normal;
