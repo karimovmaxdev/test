@@ -11,7 +11,7 @@
 
 
 
-  let startDate = writable("2023-04-21");
+  let startDate = writable("2023-04-22");
   let endDate = writable("2023-04-30");
   let counter = writable(0);
   setContext('startDate', startDate)
